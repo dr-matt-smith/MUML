@@ -51,6 +51,12 @@ public class PropetyInspector : MonoBehaviour
        
     }
 
+    public void BUTTON_ACTIOB_Delete()
+    {
+        _activeStateObject.Delete();
+        Reset();        
+    }
+
     void Reset()
     {
         inputField.text = "(nothing selected)";

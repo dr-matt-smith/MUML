@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
+using Vector3 = UnityEngine.Vector3;
 
 public class ObjectState : MonoBehaviour
 {
@@ -11,6 +13,23 @@ public class ObjectState : MonoBehaviour
     public Image imageSelectedHandle;
 
     public Text textName;
+
+    private Vector3 _position;
+
+    public bool IsSelected()
+    {
+        return this._selected;
+    }
+
+    public void SetPosition(Vector3 newPosition)
+    {
+        this._position = newPosition;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return this._position;
+    }
 
 
     private PropetyInspector _propetyInspector;
@@ -46,6 +65,11 @@ public class ObjectState : MonoBehaviour
     public void Deselect()
     {
         _selected = false;
+    }
+
+    public void Delete()
+    {
+        Destroy(gameObject);
     }
 
     public string getStateName()
