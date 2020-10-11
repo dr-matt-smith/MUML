@@ -6,32 +6,43 @@ using UnityEngine.UI;
  * pointer events for UI objects
  * https://stackoverflow.com/questions/41391708/how-to-detect-click-touch-events-on-ui-and-gameobjects
  *
- * 
+ * TODO: When clicked, if selected already wait a few milliseconds before de-selecting - time to start dragging
  */
 
 public class SimpleDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
 {
-    public GameObject prefabLine;
+    public const float MAX_WAIT_DRAG_TIME = 0.2f;
     private bool _dragging = false;
 
     private ObjectState _objectState;
 
-    private GameObject line;
+    private float _timeLastClicked;
 
     private void Awake()
     {
         _objectState = transform.parent.GetComponent<ObjectState>();
-        line = (GameObject)Instantiate(prefabLine, this.GetComponent<Transform>());
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         _objectState.BUTTON_ACTION_Select();
+        _timeLastClicked = Time.time;
     }
 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!_objectState.IsSelected())
+        {
+            float clickToDragInterval = Time.time - _timeLastClicked;
+            if (clickToDragInterval < MAX_WAIT_DRAG_TIME)
+            {
+                _objectState.BUTTON_ACTION_Select();
+            }
+            
+        }
+        
+        
         if (_objectState.IsSelected())
         {
             _dragging = true;            
@@ -44,7 +55,7 @@ public class SimpleDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         {
             transform.parent.position = Input.mousePosition;
             _objectState.SetPosition(transform.parent.position);            
-            DrawLine(Vector3.zero, _objectState.GetPosition());
+//            DrawLine(Vector3.zero, _objectState.GetPosition());
 //            DrawLine(Vector3.zero, Input.mousePosition);
         }
     }
@@ -55,25 +66,6 @@ public class SimpleDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         {
             _dragging = false;    
         }
-    }
-    
-    
-    private void DrawLine(Vector2 p1, Vector2 p2)
-    {
-        print("drawing line from p1-p2 " + p1 + p2);
-        
-        float lineWidth = 10;
-//        GameObject line = (GameObject)Instantiate(prefabLine, this.GetComponent<Transform>());
-//        Destroy(line, 0.1f);
-        RectTransform imageRectTransform = line.GetComponent<RectTransform>();
-
-        Vector3 differenceVector = p2 - p1;
- 
-        imageRectTransform.sizeDelta = new Vector2( differenceVector.magnitude, lineWidth);
-        imageRectTransform.pivot = new Vector2(0, 0.5f);
-        imageRectTransform.position = p1;
-        float angle = Mathf.Atan2(differenceVector.y, differenceVector.x) * Mathf.Rad2Deg;
-        imageRectTransform.localRotation = Quaternion.Euler(0,0, angle);
     }
 
 }

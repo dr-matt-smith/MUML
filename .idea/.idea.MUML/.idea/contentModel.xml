@@ -9,7 +9,7 @@
         <e p="_Scripts" t="Include">
           <e p="GameManager.cs" t="Include" />
           <e p="ObjectState.cs" t="Include" />
-          <e p="PropetyInspector.cs" t="Include" />
+          <e p="PropertyInspector.cs" t="Include" />
           <e p="SimpleDrag.cs" t="Include" />
           <e p="TextInputUpdator.cs" t="Include" />
         </e>

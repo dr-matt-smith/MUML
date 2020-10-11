@@ -16,6 +16,24 @@ public class ObjectState : MonoBehaviour
 
     private Vector3 _position;
 
+    public void BUTTON_ACTION_Select()
+    {
+        // toggle select
+        _selected = !_selected;
+        
+        print("SELECT toggled, now = " + _selected + " / " + Time.time);
+        
+        if (_selected)
+        {
+            _propetyInspector.StartEditingState(this);
+        }
+        else
+        {
+            _propetyInspector.BUTTON_ACTION_CancelEditing();                     
+        }
+
+    }
+
     public bool IsSelected()
     {
         return this._selected;
@@ -32,35 +50,14 @@ public class ObjectState : MonoBehaviour
     }
 
 
-    private PropetyInspector _propetyInspector;
+    private PropertyInspector _propetyInspector;
 
     void Awake()
     {
-        _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropetyInspector>();
+        _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropertyInspector>();
         textName.text = stateName;
     }
 
-    public void BUTTON_ACTION_Select()
-    {
-        // toggle select
-        _selected = !_selected;
-        
-        if (_selected)
-        {
-            Select();
-        }
-        else
-        {
-            _propetyInspector.BUTTON_ACTION_CancelEditing();                     
-        }
-
-    }
-
-    public void Select()
-    {
-        _selected = true;
-        _propetyInspector.StartEditingState(this);
-    }
 
     public void Deselect()
     {

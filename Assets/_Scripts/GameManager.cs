@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
+/*
+ * TODO: ensure GameManager GameObject is child of the Canvas - otherwise Image for line won't display .....
+ */
 public class GameManager : MonoBehaviour
 {
     public ObjectState objectState1;
@@ -21,7 +24,7 @@ public class GameManager : MonoBehaviour
         Vector3 p1 = objectState1.GetPosition();
         Vector3 p2 = objectState2.GetPosition();
         DrawLine(p1, p2);
-        print("drawing line from p1-p2 " + p1 + p2);
+//        print("drawing line from p1-p2 " + p1 + p2);
     }
 
 

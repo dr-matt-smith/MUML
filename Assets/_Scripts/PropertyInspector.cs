@@ -12,8 +12,9 @@ using Object = System.Object;
  * TODO: disable UPDATE/Cancel buttons when NOT editing
  * TODO: highlight active object too - SetHighlight(true/false) - in View Class ?
  */
-public class PropetyInspector : MonoBehaviour
+public class PropertyInspector : MonoBehaviour
 {
+    public GameObject propetiesPanel;  
     public InputField inputField;
 
     private ObjectState _activeStateObject;
@@ -25,6 +26,7 @@ public class PropetyInspector : MonoBehaviour
 
     public void StartEditingState(ObjectState os)
     {
+        propetiesPanel.SetActive(true);
         // if already editing another object, deselect it
         if (_activeStateObject != null)
         {
@@ -61,6 +63,8 @@ public class PropetyInspector : MonoBehaviour
     {
         inputField.text = "(nothing selected)";
         _activeStateObject = null;
+        propetiesPanel.SetActive(false);
+
     }
 
     
