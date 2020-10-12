@@ -7,11 +7,20 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
+          <e p="ConnectorController.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="Model" t="Include">
+            <e p="Connector.cs" t="Include" />
+            <e p="State.cs" t="Include" />
+          </e>
           <e p="ObjectState.cs" t="Include" />
           <e p="PropertyInspector.cs" t="Include" />
           <e p="SimpleDrag.cs" t="Include" />
+          <e p="SimpleDragConnector.cs" t="Include" />
           <e p="TextInputUpdator.cs" t="Include" />
+          <e p="View" t="Include">
+            <e p="StateView.cs" t="Include" />
+          </e>
         </e>
         <e p="PanelDrag" t="Include">
           <e p="DraggPanel.cs" t="Include" />

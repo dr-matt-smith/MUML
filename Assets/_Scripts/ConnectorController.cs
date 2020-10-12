@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
-public class ObjectState : MonoBehaviour
+public class ConnectorController : MonoBehaviour
 {
     public String stateName = "(not defined)";
     private bool _selected = false;
 
+    public Image imageSelectedIcon;
+    public Image imageSelectedHandle;
+
     public Text textName;
-    
+
     private Vector3 _position;
 
     public void BUTTON_ACTION_Select()
@@ -20,12 +23,14 @@ public class ObjectState : MonoBehaviour
         
         if (_selected)
         {
-            _propetyInspector.StartEditingState(this);
+//            _propetyInspector.StartEditingState(this);
         }
         else
         {
-            _propetyInspector.BUTTON_ACTION_CancelEditing();                     
+  //          _propetyInspector.BUTTON_ACTION_CancelEditing();                     
         }
+
+        print("connector - selected = " + _selected + " : " + Time.time);
 
     }
 
@@ -47,13 +52,10 @@ public class ObjectState : MonoBehaviour
 
     private PropertyInspector _propetyInspector;
 
-    void Start()
+    void Awake()
     {
-//        _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropertyInspector>();
-//        
-//        print(textName.text);
-//
-//        textName.text = stateName;
+        _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropertyInspector>();
+        textName.text = stateName;
     }
 
 
@@ -80,6 +82,8 @@ public class ObjectState : MonoBehaviour
 
     void Update()
     {
+//        imageSelectedIcon.enabled = _selected;        
+  //          imageSelectedHandle.enabled = _selected;        
     }
 
 }
