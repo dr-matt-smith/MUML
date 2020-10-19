@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
-public class ObjectState : MonoBehaviour
+public class ObjectStateView : MonoBehaviour
 {
     public String stateName = "(not defined)";
     private bool _selected = false;
@@ -12,6 +12,21 @@ public class ObjectState : MonoBehaviour
     public Text textName;
     
     private Vector3 _position;
+    
+
+    public Image imageSelected;
+    public Image imageSelectedDraghandle;
+    
+    private PropertyInspector _propetyInspector;
+    
+    void Awake()
+    {
+        _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropertyInspector>();
+        
+            textName.text = stateName;
+    }
+
+
 
     public void BUTTON_ACTION_Select()
     {
@@ -45,16 +60,6 @@ public class ObjectState : MonoBehaviour
     }
 
 
-    private PropertyInspector _propetyInspector;
-
-    void Start()
-    {
-//        _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropertyInspector>();
-//        
-//        print(textName.text);
-//
-//        textName.text = stateName;
-    }
 
 
     public void Deselect()
@@ -80,6 +85,8 @@ public class ObjectState : MonoBehaviour
 
     void Update()
     {
+        imageSelected.enabled = _selected;
+        imageSelectedDraghandle.enabled = _selected;
     }
 
 }

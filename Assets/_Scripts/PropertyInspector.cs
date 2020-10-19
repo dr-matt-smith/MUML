@@ -17,14 +17,14 @@ public class PropertyInspector : MonoBehaviour
     public GameObject propetiesPanel;  
     public InputField inputField;
 
-    private ObjectState _activeStateObject;
+    private ObjectStateView _activeStateObject;
 
     private void Awake()
     {
         Reset();
     }
 
-    public void StartEditingState(ObjectState os)
+    public void StartEditingState(ObjectStateView os)
     {
         propetiesPanel.SetActive(true);
         // if already editing another object, deselect it

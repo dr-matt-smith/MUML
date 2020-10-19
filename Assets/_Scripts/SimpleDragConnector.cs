@@ -18,7 +18,7 @@ public class SimpleDragConnector : MonoBehaviour, IDragHandler, IBeginDragHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        print("clicked");
+//        print("clicked");
         _objectState.BUTTON_ACTION_Select();
         _timeLastClicked = Time.time;
     }

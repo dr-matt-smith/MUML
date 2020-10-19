@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class Connector
 {
-    private Vector3 source;
-    private Vector3 destination;
+    private Vector2 source;
+    private Vector2 destination;
 
     public void SetSource(Vector3 source)
     {

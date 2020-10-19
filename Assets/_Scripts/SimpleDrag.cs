@@ -14,13 +14,13 @@ public class SimpleDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public const float MAX_WAIT_DRAG_TIME = 0.2f;
     private bool _dragging = false;
 
-    private ObjectState _objectState;
+    private ObjectStateView _objectState;
 
     private float _timeLastClicked;
 
     private void Awake()
     {
-        _objectState = transform.parent.GetComponent<ObjectState>();
+        _objectState = transform.parent.GetComponent<ObjectStateView>();
     }
 
     public void OnPointerDown(PointerEventData eventData)

@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 467476504518018091}
   - component: {fileID: 467476504518018088}
   m_Layer: 8
-  m_Name: Panel-STATE
+  m_Name: StateGO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,9 +582,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateName: (not defined)
-  imageSelectedIcon: {fileID: 467476504736158993}
-  imageSelectedHandle: {fileID: 467476502814172038}
   textName: {fileID: 467476504054255346}
+  imageSelected: {fileID: 467476504736158993}
+  imageSelectedDraghandle: {fileID: 467476502814172038}
 --- !u!1 &467476504522448244
 GameObject:
   m_ObjectHideFlags: 0

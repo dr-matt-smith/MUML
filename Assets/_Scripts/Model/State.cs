@@ -41,7 +41,7 @@ public class State
 
     public void UpdateView()
     {
-        this.stateView.GetComponent<ObjectState>().SetStateName(this.name);
+        this.stateView.GetComponent<ObjectStateView>().SetStateName(this.name);
     }
     
     
