@@ -57,16 +57,16 @@ public class GameManager : MonoBehaviour
         ObjectModel om = new ObjectModel();
         objectModels.Add(om);        
         
-        GameObject newObjectView = (GameObject) Instantiate(objectViewGOPrefab);
-        newObjectView.transform.SetParent(canvasDiagram);
-        newObjectView.transform.position = newObjectStartGO.transform.position;
+        GameObject newObjectViewGO = (GameObject) Instantiate(objectViewGOPrefab);
+        newObjectViewGO.transform.SetParent(canvasDiagram);
+        newObjectViewGO.transform.position = newObjectStartGO.transform.position;
 
-        newObjectView.transform.localScale *= _diagramCanvasScaler.scaleFactor;
+        newObjectViewGO.transform.localScale *= _diagramCanvasScaler.scaleFactor;
 
 
         // link Model and View
-        newObjectView.GetComponent<ObjectView>().SetModel(om);
-        om.SetStateView(newObjectView.GetComponent<ObjectView>());
+        newObjectViewGO.GetComponent<ObjectView>().SetModel(om);
+        om.SetStateView(newObjectViewGO.GetComponent<ObjectView>());
 
         // ensure new object is selected
         // @TODO: de-select ALL other objects!
@@ -114,5 +114,14 @@ public class GameManager : MonoBehaviour
     public void SetDiagramScale(System.Single scale)
     {
         _diagramCanvasScaler.scaleFactor = scale;
+    }
+
+    public void DeselectAll()
+    {
+        foreach (var objectModel in objectModels)
+        {
+            objectModel.SetSelected(false);
+            
+        }
     }
 }

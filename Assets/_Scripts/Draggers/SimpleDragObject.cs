@@ -11,38 +11,58 @@ using UnityEngine.UI;
 
 public class SimpleDragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
 {
-      public const float MAX_WAIT_DRAG_TIME = 0.2f;
-      private bool _dragging = false;
-      
-      private ConnectorController _objectState;
-      
-      private float _timeLastClicked;
-      
-      public void OnPointerDown(PointerEventData eventData)
-      {
-            this._dragging = true;
-      }      
+    private bool _dragging = false;
+    
+    private ObjectModel _objectModel;
         
-      public void OnDrag(PointerEventData eventData)
-      {
-           if (_dragging)
-           {
-             transform.parent.position = Input.mousePosition;
-           }
-      }
-      
-      public void OnEndDrag(PointerEventData eventData)
-      {
-         if (_dragging)
-         {
-            _dragging = false;    
-         }
-      }
-      
-      
-      public void OnBeginDrag(PointerEventData eventData)
-      {
-      }
+    public void SetObjectModel(ObjectModel objectModel)
+    {
+        _objectModel = objectModel;
+    }
+    
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        _dragging = true;
+        if (_objectModel != null)
+        {
+            _objectModel.SetSelected(true);
+        }
+    }
 
+                
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (_objectModel != null)
+        {
+            if (_objectModel.IsSelected())
+            {
+                transform.parent.position = Input.mousePosition;
+            }
+        }
+    }
+    
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (_objectModel != null)
+        {
+            if (_dragging)
+            {
+                _dragging = false;
+            }
+        }
+    }
+
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (_objectModel != null)
+        {
+            if (_dragging)
+            {
+                transform.parent.position = Input.mousePosition;
+                _objectModel.SetPosition(transform.parent.position);
+            }
+        }
+    }
 
 }
