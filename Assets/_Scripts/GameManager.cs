@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject stateGOPrefab;
     public GameObject connectorGOPrefab;
+    public GameObject objectViewGOPrefab;
 
     private List<Connector> connectors = new List<Connector>();
     private List<State> states = new List<State>();
+    private List<ObjectModel> objectModels = new List<ObjectModel>();
 
     private Connector c;
     
@@ -39,7 +41,25 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void BUTTON_ACTION_NewObject()
+    {
+        // new state
+        ObjectModel om = new ObjectModel();
+        objectModels.Add(om);        
+        
+        GameObject newObjectView = (GameObject) Instantiate(objectViewGOPrefab);
+        newObjectView.transform.SetParent(transform.parent);
+        newObjectView.transform.position = newObjectStartGO.transform.position;
 
+
+        // link Model and View
+        newObjectView.GetComponent<ObjectView>().SetModel(om);
+        om.SetStateView(newObjectView.GetComponent<ObjectView>());
+
+        // ensure new object is selected
+        // @TODO: de-select ALL other objects!
+        om.SetSelected(true);
+    }
 
     public void BUTTON_ACTION_NewState()
     {
