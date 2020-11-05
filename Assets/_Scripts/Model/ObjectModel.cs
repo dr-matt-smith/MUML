@@ -16,6 +16,11 @@ public class ObjectModel
     private bool _highlighted = false;
     private Vector3 _position;
 
+    public ObjectModel()
+    {
+        GameManager.AddObjectModel(this);
+    }
+
     public void SetStateView(ObjectView objectView)
     {
         this._objectView = objectView;
@@ -34,13 +39,12 @@ public class ObjectModel
 
     public void SetSelected(bool selected)
     {
+        // if selecting this object, 
+        // first de-select all others
+        if(selected)
+            GameManager.DeselectAll();
+        
         this._selected = selected;
-        this._objectView.UpdateView();
-    }
-
-    public void ToggleSelected()
-    {
-        this._selected = !this._selected;
         this._objectView.UpdateView();
     }
 

@@ -2,12 +2,12 @@
   "dependencies": {
     "com.seneral.nodeeditorframework": "https://github.com/Seneral/Node_Editor_Framework.git#release-pkg",
     "com.seneral.undopro": "https://github.com/Seneral/UndoPro.git#release-pkg",
-    "com.unity.collab-proxy": "1.3.7",
-    "com.unity.ide.rider": "1.2.1",
-    "com.unity.ide.visualstudio": "2.0.0",
-    "com.unity.ide.vscode": "1.1.4",
-    "com.unity.test-framework": "1.1.11",
-    "com.unity.textmeshpro": "3.0.0-preview.1",
+    "com.unity.collab-proxy": "1.3.9",
+    "com.unity.ide.rider": "2.0.7",
+    "com.unity.ide.visualstudio": "2.0.3",
+    "com.unity.ide.vscode": "1.2.2",
+    "com.unity.test-framework": "1.1.18",
+    "com.unity.textmeshpro": "3.0.1",
     "com.unity.timeline": "1.3.0",
     "com.unity.ugui": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
@@ -41,15 +41,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "lock": {
-    "com.seneral.undopro": {
-      "revision": "release-pkg",
-      "hash": "6a77de2ea6e53ed1b69b149d97217db4a17a4f95"
-    },
-    "com.seneral.nodeeditorframework": {
-      "revision": "release-pkg",
-      "hash": "768b0e66dc8be4fc052e1de37cbd9ad060d1d213"
-    }
   }
 }

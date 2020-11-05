@@ -11,15 +11,15 @@ public class GameManager : MonoBehaviour
 {
     private GameObject line;
 
-    public GameObject stateGOPrefab;
-    public GameObject connectorGOPrefab;
-    public GameObject objectViewGOPrefab;
+    public  GameObject stateGOPrefab;
+    public  GameObject connectorGOPrefab;
+    public  GameObject objectViewGOPrefab;
 
     public Transform canvasDiagram;
 
-    private List<Connector> connectors = new List<Connector>();
-    private List<State> states = new List<State>();
-    private List<ObjectModel> objectModels = new List<ObjectModel>();
+    private static List<Connector> connectors = new List<Connector>();
+    private static List<State> states = new List<State>();
+    private static List<ObjectModel> objectModels = new List<ObjectModel>();
 
     private Connector c;
     
@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
     private const string START_POSITION_TAG = "Start_Position";
 
     private CanvasScaler _diagramCanvasScaler;
+
+    public static void AddObjectModel(ObjectModel om)
+    {
+        objectModels.Add(om);
+    }
       
 
     private void Awake()
@@ -55,7 +60,6 @@ public class GameManager : MonoBehaviour
 //        
         // new state
         ObjectModel om = new ObjectModel();
-        objectModels.Add(om);        
         
         GameObject newObjectViewGO = (GameObject) Instantiate(objectViewGOPrefab);
         newObjectViewGO.transform.SetParent(canvasDiagram);
@@ -69,7 +73,6 @@ public class GameManager : MonoBehaviour
         om.SetStateView(newObjectViewGO.GetComponent<ObjectView>());
 
         // ensure new object is selected
-        // @TODO: de-select ALL other objects!
         om.SetSelected(true);
     }
 
@@ -116,7 +119,7 @@ public class GameManager : MonoBehaviour
         _diagramCanvasScaler.scaleFactor = scale;
     }
 
-    public void DeselectAll()
+    public static void DeselectAll()
     {
         foreach (var objectModel in objectModels)
         {

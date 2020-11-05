@@ -9,7 +9,8 @@ using UnityEngine.UI;
  * TODO: When clicked, if selected already wait a few milliseconds before de-selecting - time to start dragging
  */
 
-public class SimpleDragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
+public class SimpleDragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler, IPointerExitHandler, IPointerEnterHandler
+
 {
     private bool _dragging = false;
     
@@ -20,6 +21,14 @@ public class SimpleDragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, 
         _objectModel = objectModel;
     }
     
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+    }
+ 
+    public void OnPointerExit(PointerEventData eventData)
+    {
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         _dragging = true;

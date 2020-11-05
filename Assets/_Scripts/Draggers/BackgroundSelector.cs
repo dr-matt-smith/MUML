@@ -21,6 +21,6 @@ public class BackgroundSelector : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        gameManager.DeselectAll();
+        GameManager.DeselectAll();
     }
 }
