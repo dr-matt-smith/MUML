@@ -9,6 +9,8 @@ using Vector3 = UnityEngine.Vector3;
 public class ObjectView : MonoBehaviour
 {
     private Text textDebug;
+
+    public GameObject selectedImage;
     
     public Text textName;
     public SimpleDragObject simpleDragObject;
@@ -52,6 +54,8 @@ public class ObjectView : MonoBehaviour
             textDebug.text = "selected = FALSE";
             imageBackground.color = Color.white;
         }
+
+        selectedImage.SetActive(_objectModel.IsHighlighted());
     }
 
 

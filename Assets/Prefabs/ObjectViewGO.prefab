@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a86afeeeae004be6b3953441b00d53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedImage: {fileID: 1263208977503491153}
   textName: {fileID: 3760434717458779537}
   simpleDragObject: {fileID: 4044470839661219636}
   imageBackground: {fileID: 987881760145683237}

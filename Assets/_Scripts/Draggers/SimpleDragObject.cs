@@ -23,10 +23,12 @@ public class SimpleDragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, 
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        _objectModel.SetHighlighed(true);
     }
  
     public void OnPointerExit(PointerEventData eventData)
     {
+        _objectModel.SetHighlighed(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
