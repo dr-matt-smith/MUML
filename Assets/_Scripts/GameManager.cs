@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
  * TODO: ensure GameManager GameObject is child of the Canvas - otherwise Image for line won't display .....
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject connectorGOPrefab;
     public GameObject objectViewGOPrefab;
 
+    public Transform canvasDiagram;
+
     private List<Connector> connectors = new List<Connector>();
     private List<State> states = new List<State>();
     private List<ObjectModel> objectModels = new List<ObjectModel>();
@@ -24,11 +27,14 @@ public class GameManager : MonoBehaviour
     private GameObject newObjectStartGO;
 
     private const string START_POSITION_TAG = "Start_Position";
+
+    private CanvasScaler _diagramCanvasScaler;
       
 
     private void Awake()
     {
         newObjectStartGO = GameObject.FindWithTag(START_POSITION_TAG);
+        _diagramCanvasScaler = canvasDiagram.GetComponent<CanvasScaler>();
     }
 
     private void Update()
@@ -43,13 +49,19 @@ public class GameManager : MonoBehaviour
 
     public void BUTTON_ACTION_NewObject()
     {
+//        print(1 + " scale facor = " + _diagramCanvasScaler.scaleFactor);
+//        _diagramCanvasScaler.scaleFactor = 1;
+//        print(2 + " scale facor = " + _diagramCanvasScaler.scaleFactor);
+//        
         // new state
         ObjectModel om = new ObjectModel();
         objectModels.Add(om);        
         
         GameObject newObjectView = (GameObject) Instantiate(objectViewGOPrefab);
-        newObjectView.transform.SetParent(transform.parent);
+        newObjectView.transform.SetParent(canvasDiagram);
         newObjectView.transform.position = newObjectStartGO.transform.position;
+
+        newObjectView.transform.localScale *= _diagramCanvasScaler.scaleFactor;
 
 
         // link Model and View
@@ -69,8 +81,11 @@ public class GameManager : MonoBehaviour
         states.Add(s);        
         
         GameObject newStateView = (GameObject) Instantiate(stateGOPrefab);
-        newStateView.transform.SetParent(transform.parent);
+        newStateView.transform.SetParent(canvasDiagram);
         newStateView.transform.position = newObjectStartGO.transform.position;
+        newStateView.transform.localScale *= _diagramCanvasScaler.scaleFactor;
+
+        
         s.SetStateView(newStateView);
         s.UpdateView();
         newStateView.GetComponent<ObjectStateView>().BUTTON_ACTION_Select();
@@ -79,8 +94,10 @@ public class GameManager : MonoBehaviour
     public void BUTTON_ACTION_NewConnector()
     {
         GameObject newConnectorView = (GameObject) Instantiate(connectorGOPrefab);
-        newConnectorView.transform.SetParent(transform.parent);
+        newConnectorView.transform.SetParent(canvasDiagram);
         newConnectorView.transform.position = newObjectStartGO.transform.position;
+        newConnectorView.transform.localScale *= _diagramCanvasScaler.scaleFactor;
+
         
         ConnectorController connectorController = newConnectorView.GetComponent<ConnectorController>();
         
@@ -89,5 +106,13 @@ public class GameManager : MonoBehaviour
         connectors.Add(c);
     }
 
-
+    public void BUTTON_ACTION_scaleRest()
+    {
+        SetDiagramScale(1);
+    }
+    
+    public void SetDiagramScale(System.Single scale)
+    {
+        _diagramCanvasScaler.scaleFactor = scale;
+    }
 }
