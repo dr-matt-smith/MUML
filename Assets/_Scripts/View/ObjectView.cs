@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = System.Object;
@@ -8,10 +9,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class ObjectView : MonoBehaviour
 {
-    private Text textDebug;
+    public GameObject imageHighlight;
 
-    public GameObject selectedImage;
-    
     public Text textName;
     public SimpleDragObject simpleDragObject;
         
@@ -19,16 +18,9 @@ public class ObjectView : MonoBehaviour
 
     public Image imageBackground;
 
-
-    private Color _colorSelected = Color.yellow;
+    protected Color _colorSelected = Color.yellow;
     
-    private ObjectModel _objectModel;
-
-    private void Awake()
-    {
-        textDebug = GameObject.FindWithTag("DebugText").GetComponent<Text>();
-    }
-
+    protected ObjectModel _objectModel;
 
     public void SetModel(ObjectModel objectModel)
     {
@@ -44,18 +36,19 @@ public class ObjectView : MonoBehaviour
     public void UpdateView()
     {
         textName.text = this._objectModel.GetName();
+        
+        // selecting
         if (_objectModel.IsSelected())
         {
             imageBackground.color = _colorSelected;
-            textDebug.text = "selected = TRUE";
         }
         else
         {
-            textDebug.text = "selected = FALSE";
             imageBackground.color = Color.white;
         }
 
-        selectedImage.SetActive(_objectModel.IsHighlighted());
+        // highlighting
+        imageHighlight.SetActive(_objectModel.IsHighlighted());
     }
 
 
@@ -69,14 +62,6 @@ public class ObjectView : MonoBehaviour
         return this._position;
     }
 
-
-
-
-    private void RandomName()
-    {
-        int n = Random.Range(1, 99);
-        this._objectModel.SetName("Object: " + n);
-    }
 
 }
 

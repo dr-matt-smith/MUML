@@ -15,7 +15,15 @@ public class SimpleDragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, 
     private bool _dragging = false;
     
     private ObjectModel _objectModel;
-        
+
+    private GameManager _gameManager;
+
+    private void Awake()
+    {
+        _gameManager = GameObject.FindWithTag("Inspector").GetComponent<GameManager>();
+    }
+
+
     public void SetObjectModel(ObjectModel objectModel)
     {
         _objectModel = objectModel;
@@ -23,20 +31,23 @@ public class SimpleDragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, 
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _objectModel.SetHighlighed(true);
+        if (_objectModel != null)
+            _objectModel.SetHighlighted(true);
     }
  
     public void OnPointerExit(PointerEventData eventData)
     {
-        _objectModel.SetHighlighed(false);
+        if (_objectModel != null)
+            _objectModel.SetHighlighted(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         _dragging = true;
+
         if (_objectModel != null)
         {
-            _objectModel.SetSelected(true);
+            _gameManager.SetSelectedObject(_objectModel); 
         }
     }
 

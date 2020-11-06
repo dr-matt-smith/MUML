@@ -13,13 +13,19 @@ public class GameManager : MonoBehaviour
 
     public  GameObject stateGOPrefab;
     public  GameObject connectorGOPrefab;
-    public  GameObject objectViewGOPrefab;
+    public  GameObject objectViewStateDefaultGOPrefab;
+    public  GameObject objectViewStateInitialGOPrefab;
+    public  GameObject objectViewStateFinalGOPrefab;
+
+    public GameObject buttonDelete;
 
     public Transform canvasDiagram;
 
     private static List<Connector> connectors = new List<Connector>();
     private static List<State> states = new List<State>();
     private static List<ObjectModel> objectModels = new List<ObjectModel>();
+
+    public ObjectModel selectedObject = null;
 
     private Connector c;
     
@@ -42,26 +48,20 @@ public class GameManager : MonoBehaviour
         _diagramCanvasScaler = canvasDiagram.GetComponent<CanvasScaler>();
     }
 
-    private void Update()
+    public void SetSelectedObject(ObjectModel om)
     {
-        
-//        Vector3 p1 = objectState1.GetPosition();
-//        Vector3 p2 = objectState2.GetPosition();
-//        DrawLine(p1, p2);
-//        print("drawing line from p1-p2 " + p1 + p2);
-
+        selectedObject = om;
+        DeselectAll();
+        om.Select();
+        ShowDeleteButton();
     }
 
-    public void BUTTON_ACTION_NewObject()
+    public void NewObjectState(GameObject prefab)
     {
-//        print(1 + " scale facor = " + _diagramCanvasScaler.scaleFactor);
-//        _diagramCanvasScaler.scaleFactor = 1;
-//        print(2 + " scale facor = " + _diagramCanvasScaler.scaleFactor);
-//        
         // new state
-        ObjectModel om = new ObjectModel();
-        
-        GameObject newObjectViewGO = (GameObject) Instantiate(objectViewGOPrefab);
+        ObjectModelState oms = new ObjectModelState();
+
+        GameObject newObjectViewGO = (GameObject) Instantiate(prefab);
         newObjectViewGO.transform.SetParent(canvasDiagram);
         newObjectViewGO.transform.position = newObjectStartGO.transform.position;
 
@@ -69,11 +69,27 @@ public class GameManager : MonoBehaviour
 
 
         // link Model and View
-        newObjectViewGO.GetComponent<ObjectView>().SetModel(om);
-        om.SetStateView(newObjectViewGO.GetComponent<ObjectView>());
+        newObjectViewGO.GetComponent<ObjectView>().SetModel(oms);
+        oms.SetObjectView(newObjectViewGO.GetComponent<ObjectView>());
 
         // ensure new object is selected
-        om.SetSelected(true);
+        SetSelectedObject(oms);
+        
+    }
+
+    public void BUTTON_ACTION_NewObjectStateDefault()
+    {
+        NewObjectState(objectViewStateDefaultGOPrefab);        
+    }
+
+    public void BUTTON_ACTION_NewObjectStateInitital()
+    {
+        NewObjectState(objectViewStateInitialGOPrefab);        
+    }
+    
+    public void BUTTON_ACTION_NewObjectStateFinal()
+    {
+        NewObjectState(objectViewStateFinalGOPrefab);        
     }
 
     public void BUTTON_ACTION_NewState()
@@ -92,6 +108,8 @@ public class GameManager : MonoBehaviour
         s.SetStateView(newStateView);
         s.UpdateView();
         newStateView.GetComponent<ObjectStateView>().BUTTON_ACTION_Select();
+        ShowDeleteButton();
+
     }
     
     public void BUTTON_ACTION_NewConnector()
@@ -107,11 +125,36 @@ public class GameManager : MonoBehaviour
         // get reference to new Connect object in the ConnectorController of new GO created
         Connector c = connectorController.GetConnector();
         connectors.Add(c);
+        ShowDeleteButton();
+
     }
 
     public void BUTTON_ACTION_scaleRest()
     {
         SetDiagramScale(1);
+    }
+
+    public void BUTTON_ACTION_DeleteSelectedObject()
+    {
+        DeselectAll();
+        if (selectedObject != null)
+        {
+            objectModels.Remove(selectedObject);
+            Destroy(selectedObject.GetObjectView().gameObject);
+            selectedObject = null;
+            
+            HideDeleteButton();
+        }
+    }
+
+    public void HideDeleteButton()
+    {
+        buttonDelete.SetActive(false);
+    }
+    
+    public void ShowDeleteButton()
+    {
+        buttonDelete.SetActive(true);
     }
     
     public void SetDiagramScale(System.Single scale)
@@ -123,8 +166,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var objectModel in objectModels)
         {
-            objectModel.SetSelected(false);
-            
+            objectModel.Deselect();            
         }
     }
 }

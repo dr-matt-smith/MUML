@@ -21,9 +21,8 @@ public class ObjectStateView : MonoBehaviour
     
     void Awake()
     {
-        _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropertyInspector>();
-        
-            textName.text = stateName;
+        _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropertyInspector>();        
+        textName.text = stateName;
     }
 
 
@@ -58,7 +57,6 @@ public class ObjectStateView : MonoBehaviour
     {
         return this._position;
     }
-
 
 
 

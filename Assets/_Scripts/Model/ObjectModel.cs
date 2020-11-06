@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class ObjectModel
 {
-    public enum Type
+    public enum ObjectType
     {
         DEFAULT,
-        CIRCLE
+        STATE
     }
-
     
     private string _name = "no name yet)";
-    private Type _type = Type.DEFAULT;
+    private ObjectType _type = ObjectType.DEFAULT;
     private ObjectView _objectView;
     private bool _selected = false;
     private bool _highlighted = false;
@@ -21,9 +20,24 @@ public class ObjectModel
         GameManager.AddObjectModel(this);
     }
 
-    public void SetStateView(ObjectView objectView)
+    public ObjectType GetObjectType()
+    {
+        return this._type;
+    }
+
+    public void SetObjectType(ObjectType objectType)
+    {
+        this._type = objectType;
+    }
+
+    public void SetObjectView(ObjectView objectView)
     {
         this._objectView = objectView;
+    }
+
+    public ObjectView GetObjectView()
+    {
+        return this._objectView;
     }
 
     public string GetName()
@@ -37,15 +51,16 @@ public class ObjectModel
         this._objectView.UpdateView();
     }
 
-    public void SetSelected(bool selected)
+    public void Select()
     {
-        // if selecting this object, 
-        // first de-select all others
-        if(selected)
-            GameManager.DeselectAll();
-        
-        this._selected = selected;
-        this._objectView.UpdateView();
+        this._selected = true;
+        this._objectView.UpdateView();        
+    }
+
+    public void Deselect()
+    {
+        this._selected = false;
+        this._objectView.UpdateView();        
     }
 
     public bool IsSelected()
@@ -53,7 +68,7 @@ public class ObjectModel
         return this._selected;
     }
 
-    public void SetHighlighed(bool highlighted)
+    public void SetHighlighted(bool highlighted)
     {
         this._highlighted = highlighted;
         this._objectView.UpdateView();
