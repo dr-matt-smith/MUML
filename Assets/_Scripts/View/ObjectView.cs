@@ -21,6 +21,13 @@ public class ObjectView : MonoBehaviour
     protected Color _colorSelected = Color.yellow;
     
     protected ObjectModel _objectModel;
+    private GameManager _gameManager;
+
+    void Awake()
+    {
+        _gameManager = GameObject.FindGameObjectWithTag("Inspector").GetComponent<GameManager>();
+    }
+
 
     public void SetModel(ObjectModel objectModel)
     {
@@ -41,9 +48,12 @@ public class ObjectView : MonoBehaviour
         if (_objectModel.IsSelected())
         {
             imageBackground.color = _colorSelected;
+            _gameManager.ShowDeleteButton();
+            GameObject.FindWithTag("DebugText").GetComponent<Text>().text = _objectModel.GetName();
         }
         else
         {
+            print("BEFORE ERROR ! game object " + _objectModel.GetName());
             imageBackground.color = Color.white;
         }
 
@@ -60,6 +70,12 @@ public class ObjectView : MonoBehaviour
     public Vector3 GetPosition()
     {
         return this._position;
+    }
+
+    public void DeleteGameObject()
+    {
+        _gameManager.HideDeleteButton();
+        Destroy(gameObject);
     }
 
 

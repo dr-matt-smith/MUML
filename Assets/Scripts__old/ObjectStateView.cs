@@ -18,7 +18,7 @@ public class ObjectStateView : MonoBehaviour
     public Image imageSelectedDraghandle;
     
     private PropertyInspector _propetyInspector;
-    
+
     void Awake()
     {
         _propetyInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<PropertyInspector>();        

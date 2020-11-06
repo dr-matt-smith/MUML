@@ -642,7 +642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 57.759094, y: -13.724915}
+  m_AnchoredPosition: {x: 57.759033, y: -13.724915}
   m_SizeDelta: {x: -115.5182, y: 261.6249}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &311676214
@@ -2082,6 +2082,7 @@ GameObject:
   - component: {fileID: 945747754}
   - component: {fileID: 945747753}
   - component: {fileID: 945747752}
+  - component: {fileID: 945747755}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2154,6 +2155,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &945747755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945747751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3573d2b7f8bc47219c6f09963de103a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &952013765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -9.299988, y: -0.2249794}
+  m_AnchoredPosition: {x: -9.300049, y: -0.2249794}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1163833451
@@ -3190,6 +3203,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ba7f0329a44446aa036d0d1b6a4dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1417578626
+GameObject:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417578628}
+  - component: {fileID: 1417578627}
+  m_Layer: 0
+  m_Name: UndoProRecords
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1417578627
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417578626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa53029e0a62304caf81173265515b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  undoProRecords: []
+  undoState:
+    redoRecords: []
+    undoRecords:
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Move ObjectStateView.cs
+    - Drag
+    - Rename Model
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Move 3 assets
+    - Drag
+    - Rename Model
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Move 2 assets
+    - Drag
+    - Move PanelDrag
+    - Drag
+    - Move PanelDrag
+    - Drag
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Move Background.cs
+    - Move PropertyInspector.cs
+    - Move TextInputUpdator.cs
+    - Move SimpleDrag.cs
+    - Drag
+    - Rename _old
+    - Move Scripts__old
+    - Drag
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Selection Change
+    - Drag MonoBehaviour
+--- !u!4 &1417578628
+Transform:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417578626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1421493000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,433 +4121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820138891}
   m_CullTransparentMesh: 0
---- !u!1 &1940331915
-GameObject:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1940331917}
-  - component: {fileID: 1940331916}
-  m_Layer: 0
-  m_Name: UndoProRecords
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1940331916
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940331915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efa53029e0a62304caf81173265515b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  undoProRecords: []
-  undoState:
-    redoRecords: []
-    undoRecords:
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Rename ObjectViewGO 1
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Inspector
-    - Inspector
-    - Inspector
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Sprite Selection
-    - Inspector
-    - Sprite Selection
-    - Sprite Selection
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Paste Button-new-object
-    - Rename Button-new-object (1)
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Paste Button-new-state-initial
-    - Rename Button-new-state-initial (1)
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Resize
-    - Resize
-    - Selection Change
-    - Move
-    - Move
-    - Selection Change
-    - Move
-    - Selection Change
-    - Selection Change
-    - Move
-    - Move
-    - Selection Change
-    - Selection Change
-    - Resize
-    - Resize
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Create Image
-    - Add Image
-    - 
-    - 
-    - 
-    - Create Image
-    - Selection Change
-    - Resize
-    - Resize
-    - Move
-    - Inspector
-    - Resize
-    - Resize
-    - Resize
-    - Move
-    - Move
-    - Resize
-    - Resize
-    - Selection Change
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Create Image
-    - Add Image
-    - 
-    - 
-    - 
-    - Create Image
-    - Selection Change
-    - Inspector
-    - Move
-    - Move
-    - Resize
-    - Resize
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Move
-    - Move
-    - Selection Change
-    - Selection Change
-    - Move
-    - Move
-    - Resize
-    - Resize
-    - Move
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Resize
-    - Resize
-    - Selection Change
-    - Selection Change
-    - Resize
-    - Resize
-    - Selection Change
-    - Resize
-    - Resize
-    - Selection Change
-    - Button-Delete Parenting
-    - Button-Delete Parenting
-    - Move
-    - Move
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Move
-    - Move
-    - Resize
-    - Selection Change
-    - Change Rectangle Anchors
-    - Selection Change
-    - Resize
-    - Resize
-    - Move
-    - Resize
-    - Resize
-    - Resize
-    - Resize
-    - Selection Change
-    - Resize
-    - Change Rectangle Anchors
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Resize
-    - Resize
-    - Selection Change
-    - Selection Change
-    - Move
-    - Inspector
-    - Move Rectangle Pivot
-    - Move Rectangle Pivot
-    - Move
-    - Move
-    - Resize
-    - Resize
-    - Move
-    - Move
-    - Resize
-    - Resize
-    - Selection Change
-    - Move
-    - Move
-    - Move
-    - Move
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Inspector
-    - Inspector
-    - Selection Change
-    - Inspector
-    - Inspector
-    - Inspector
-    - Inspector
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Rename Object_STATE_ViewGO 1
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Rename Object_STATE_Default_ViewGO 1
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Rename Object_STATE_InitialViewGO
-    - Selection Change
-    - Selection Change
-    - Rename Object_STATE_Final_ViewGO
-    - Rename Object_STATE_Initial_ViewGO
-    - Selection Change
-    - Selection Change
-    - Rename Object_STATE_FinalViewGO
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Inspector
-    - Inspector
-    - Inspector
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Selection Change
-    - Rename Button-new-object
-    - Inspector
-    - Selection Change
-    - Inspector
-    - Selection Change
---- !u!4 &1940331917
-Transform:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940331915}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2031999764
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
 
     private static List<Connector> connectors = new List<Connector>();
     private static List<State> states = new List<State>();
-    private static List<ObjectModel> objectModels = new List<ObjectModel>();
 
     public ObjectModel selectedObject = null;
 
@@ -36,10 +35,7 @@ public class GameManager : MonoBehaviour
 
     private CanvasScaler _diagramCanvasScaler;
 
-    public static void AddObjectModel(ObjectModel om)
-    {
-        objectModels.Add(om);
-    }
+
       
 
     private void Awake()
@@ -48,13 +44,12 @@ public class GameManager : MonoBehaviour
         _diagramCanvasScaler = canvasDiagram.GetComponent<CanvasScaler>();
     }
 
-    public void SetSelectedObject(ObjectModel om)
-    {
-        selectedObject = om;
-        DeselectAll();
-        om.Select();
-        ShowDeleteButton();
-    }
+//    public void SetSelectedObject(ObjectModel om)
+//    {
+//        selectedObject = om;
+//        om.Select();
+//        ShowDeleteButton();
+//    }
 
     public void NewObjectState(GameObject prefab)
     {
@@ -73,7 +68,7 @@ public class GameManager : MonoBehaviour
         oms.SetObjectView(newObjectViewGO.GetComponent<ObjectView>());
 
         // ensure new object is selected
-        SetSelectedObject(oms);
+        ObjectModel.Select(oms);
         
     }
 
@@ -136,15 +131,8 @@ public class GameManager : MonoBehaviour
 
     public void BUTTON_ACTION_DeleteSelectedObject()
     {
-        DeselectAll();
-        if (selectedObject != null)
-        {
-            objectModels.Remove(selectedObject);
-            Destroy(selectedObject.GetObjectView().gameObject);
-            selectedObject = null;
-            
-            HideDeleteButton();
-        }
+
+        ObjectModel.DeleteSelected();
     }
 
     public void HideDeleteButton()
@@ -162,11 +150,5 @@ public class GameManager : MonoBehaviour
         _diagramCanvasScaler.scaleFactor = scale;
     }
 
-    public static void DeselectAll()
-    {
-        foreach (var objectModel in objectModels)
-        {
-            objectModel.Deselect();            
-        }
-    }
+
 }

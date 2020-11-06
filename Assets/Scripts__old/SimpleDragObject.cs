@@ -47,7 +47,7 @@ public class SimpleDragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, 
 
         if (_objectModel != null)
         {
-            _gameManager.SetSelectedObject(_objectModel); 
+            ObjectModel.Select(_objectModel); 
         }
     }
 

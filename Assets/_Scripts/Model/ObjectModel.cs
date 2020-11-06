@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 
 public class ObjectModel
 {
@@ -17,7 +19,8 @@ public class ObjectModel
 
     public ObjectModel()
     {
-        GameManager.AddObjectModel(this);
+        ObjectModel.AddObjectModel(this);
+        this._name = "object " + objectModels.Count;
     }
 
     public ObjectType GetObjectType()
@@ -51,11 +54,6 @@ public class ObjectModel
         this._objectView.UpdateView();
     }
 
-    public void Select()
-    {
-        this._selected = true;
-        this._objectView.UpdateView();        
-    }
 
     public void Deselect()
     {
@@ -82,6 +80,71 @@ public class ObjectModel
     public void SetPosition(Vector3 position)
     {
         this._position = position;
+    }
+
+    public void DeleteObject()
+    {
+        objectModels.Remove(this);
+        this._objectView.DeleteGameObject();
+    }
+    
+    // ------ static --------
+    private static List<ObjectModel> objectModels = new List<ObjectModel>();
+    private static ObjectModel currentSelectedObjectModel = null;
+
+    public static void AddObjectModel(ObjectModel om)
+    {
+        objectModels.Add(om);
+    }
+
+    public static void DeleteSelected()
+    {
+        ObjectModel selected = GetSelected();
+        if (selected != null)
+        {
+            selected.DeleteObject();
+        }
+    }
+
+    public static ObjectModel GetSelected()
+    {
+        foreach (var objectModel in objectModels)
+        {
+            if (objectModel.IsSelected())
+                return objectModel;
+        }        
+            
+        // if get here, none was selected
+        return null;
+    }
+    
+    public static string AsString()
+    {
+        string s = Time.time + "\n selected = " + GetSelected() + "  // "; 
+        foreach (var objectModel in objectModels)
+        {
+            s += "/ " + objectModel._name + "(" + objectModel._type + ")";
+        }
+
+        return s;
+    }
+    
+    public static void Select(ObjectModel om)
+    {
+        // de-select any currently selected object
+        if (currentSelectedObjectModel != null)
+        {
+            currentSelectedObjectModel._selected = false;
+            currentSelectedObjectModel._objectView.UpdateView();
+        }
+
+        // now select given object
+        if (om != null)
+        {
+            currentSelectedObjectModel = om;
+            om._selected = true;
+            om._objectView.UpdateView();                    
+        }
     }
 
 }

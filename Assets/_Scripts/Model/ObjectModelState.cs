@@ -14,7 +14,7 @@ public class ObjectModelState: ObjectModel
 
     public ObjectModelState()
     {
-        GameManager.AddObjectModel(this);
+//        ObjectModel.AddObjectModel(this);
         SetObjectType(ObjectType.STATE);
     }
 

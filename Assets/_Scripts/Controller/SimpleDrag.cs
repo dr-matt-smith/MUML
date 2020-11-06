@@ -11,39 +11,41 @@ using UnityEngine.UI;
 
 public class SimpleDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
 {
-    public const float MAX_WAIT_DRAG_TIME = 0.2f;
+//    public const float MAX_WAIT_DRAG_TIME = 0.2f;
     private bool _dragging = false;
 
-    private ObjectStateView _objectState;
+    private ObjectView _objectView;
+    private ObjectModel _objectModel;
 
-    private float _timeLastClicked;
+//    private float _timeLastClicked;
 
     private void Awake()
     {
-        _objectState = transform.parent.GetComponent<ObjectStateView>();
+        _objectView = transform.parent.GetComponent<ObjectView>();
+        _objectModel = _objectView.GetObjectModel();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _objectState.BUTTON_ACTION_Select();
-        _timeLastClicked = Time.time;
+        ObjectModel.Select(_objectModel);
+//        _timeLastClicked = Time.time;
     }
 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!_objectState.IsSelected())
-        {
-            float clickToDragInterval = Time.time - _timeLastClicked;
-            if (clickToDragInterval < MAX_WAIT_DRAG_TIME)
-            {
-                _objectState.BUTTON_ACTION_Select();
-            }
-            
-        }
+//        if (!_objectModel.IsSelected())
+//        {
+//            float clickToDragInterval = Time.time - _timeLastClicked;
+//            if (clickToDragInterval < MAX_WAIT_DRAG_TIME)
+//            {
+//                _objectView.BUTTON_ACTION_Select();
+//            }
+//            
+//        }
         
         
-        if (_objectState.IsSelected())
+        if (_objectModel.IsSelected())
         {
             _dragging = true;            
         }
@@ -54,9 +56,7 @@ public class SimpleDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (_dragging)
         {
             transform.parent.position = Input.mousePosition;
-            _objectState.SetPosition(transform.parent.position);            
-//            DrawLine(Vector3.zero, _objectState.GetPosition());
-//            DrawLine(Vector3.zero, Input.mousePosition);
+            _objectView.SetPosition(transform.parent.position);            
         }
     }
 
